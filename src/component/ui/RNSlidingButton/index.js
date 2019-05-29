@@ -216,7 +216,7 @@ RNSlidingButton.propTypes = {
     successfulSlidePercent: PropTypes.number,
     height: PropTypes.number.isRequired,
     slideDirection: PropTypes.string,
-    colors: PropTypes.string
+    colors: PropTypes.array
 };
 
 const styles = StyleSheet.create({
