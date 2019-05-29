@@ -6,8 +6,10 @@ import {
     View,
     PanResponder,
     Animated,
+    Dimensions
 } from 'react-native';
 import PropTypes from 'prop-types';
+import LinearGradient from "react-native-linear-gradient";
 
 
 const SlideDirection = {
@@ -15,6 +17,8 @@ const SlideDirection = {
     RIGHT: "right",
     ANY: "any"
 };
+
+const { height } = Dimensions.get("window");
 
 export default class RNSlidingButton extends Component {
     constructor(props) {
@@ -192,7 +196,16 @@ export default class RNSlidingButton extends Component {
         return (
             <View style={[styles.slidingContainer, this.props.style, {height: this.props.height}]}>
                 <View style={styles.container} {...this.panResponder.panHandlers}>
-                    {button}
+                    <LinearGradient
+                        activeOpacity={0.9}
+                        colors={this.props.colors}
+                        style={styles.LinearGradientStyle()}
+                        start={{ x: 0, y: 1 }}
+                        end={{ x: 1, y: 1 }}
+                        locations={[0, 1]}
+                      >
+                        {button}
+                    </LinearGradient>
                 </View>
             </View>
         );
@@ -202,7 +215,8 @@ export default class RNSlidingButton extends Component {
 RNSlidingButton.propTypes = {
     successfulSlidePercent: PropTypes.number,
     height: PropTypes.number.isRequired,
-    slideDirection: PropTypes.string
+    slideDirection: PropTypes.string,
+    colors: PropTypes.string
 };
 
 const styles = StyleSheet.create({
@@ -218,7 +232,14 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-    }
+    },
+    LinearGradientStyle: () => ({
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 50,
+        height: height > 600 ? 50 : 40,
+        width: 300
+    })
 });
 
 export {SlideDirection}

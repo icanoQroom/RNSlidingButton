@@ -30,5 +30,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Happudada/RNSlidingButton/issues"
+  },
+  "dependencies": {
+    "react-native-linear-gradient": "^2.5.4"
   }
 }
